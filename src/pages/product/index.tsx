@@ -1,9 +1,17 @@
-import React from 'react'
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 
 const ProductPage = () => {
-  return (
-    <div>ProductPage</div>
-  )
-}
+  const { push } = useRouter();
+  const [isLogin, setIsLogin] = React.useState(false);
 
-export default ProductPage
+  useEffect(() => {
+    if (!isLogin) {
+      push("/auth/login");
+    }
+  }, []);
+  
+  return <div>ProductPage</div>;
+};
+
+export default ProductPage;
