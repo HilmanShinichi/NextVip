@@ -1,5 +1,8 @@
+import ProductView from "@/views/Product/Main";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import useSWR from "swr";
+import { fetcher } from '@/lib/swr/fetcher';
 
 type productType = {
     id: number;
@@ -19,20 +22,23 @@ const ProductPage = () => {
     }
   }, []);
 
-  useEffect(() => {
-    fetch("/api/product")
-      .then((res) => res.json())
-      .then((response) => {
-        setProducts(response.data);
-      });
-  }, []);
+  const { data, error, isLoading } = useSWR(
+    "/api/product",
+    fetcher
+  )
+  console.log(data)
+
+  // useEffect(() => {
+  //   fetch("/api/product")
+  //     .then((res) => res.json())
+  //     .then((response) => {
+  //       setProducts(response.data);
+  //     });
+  // }, []);
 
   return (
     <div>
-      <h1>ProductPage</h1>
-      {products.map((product: productType) => (
-        <div key={product.id}>{product.name}</div>
-      ))}
+     <ProductView products={isLoading ? [] : data.data} />
     </div>
   );
 };
