@@ -2,14 +2,6 @@ import ProductView from "@/views/Product/Main";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import useSWR from "swr";
-import { fetcher } from '@/lib/swr/fetcher';
-
-type productType = {
-    id: number;
-    name: string;
-    price: number;
-    size:string;
-};
 
 const ProductPage = () => {
   const { push } = useRouter();
@@ -22,11 +14,8 @@ const ProductPage = () => {
     }
   }, []);
 
-  const { data, error, isLoading } = useSWR(
-    "/api/product",
-    fetcher
-  )
-  console.log(data)
+  const { data, error, isLoading } = useSWR("/api/product", fetcher);
+  console.log(data);
 
   // useEffect(() => {
   //   fetch("/api/product")
@@ -38,7 +27,7 @@ const ProductPage = () => {
 
   return (
     <div>
-     <ProductView products={isLoading ? [] : data.data} />
+      <ProductView products={isLoading ? [] : data.data} />
     </div>
   );
 };
