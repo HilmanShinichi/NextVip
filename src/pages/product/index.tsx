@@ -1,3 +1,4 @@
+import { fetcher } from "@/lib/swr/fetcher";
 import ProductView from "@/views/Product/Main";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
