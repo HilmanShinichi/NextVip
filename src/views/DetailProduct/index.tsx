@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./DetailProduct.module.scss";
 import { ProductType } from "@/types/product.type";
 
-const DetailProduct = ({ product }: { product: ProductType[] }) => {
+const DetailProduct = ({ product }: { product: ProductType }) => {
   return (
     <>
     <h1 className={styles.title}>Detail Product</h1>
