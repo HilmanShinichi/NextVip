@@ -16,7 +16,6 @@ const ProductPage = () => {
   }, []);
 
   const { data, error, isLoading } = useSWR("/api/product", fetcher);
-  console.log(data);
 
   // useEffect(() => {
   //   fetch("/api/product")
