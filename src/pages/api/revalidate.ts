@@ -17,7 +17,7 @@ export default async function handler(
   }
   if (req.query.data === "product") {
     try {
-      await res.revalidate("product/static");
+      await res.revalidate("/product/static");
       return res.json({
         revalidate: true,
       });
