@@ -1,4 +1,4 @@
-import React, {useState}from "react";
+import React, { useState } from "react";
 import styles from "./Register.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,6 +9,7 @@ const RegisterView = () => {
   const { push } = useRouter();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setError("");
     const data = {
       email: e.target.email.value,
       fullname: e.target.fullname.value,
@@ -72,7 +73,12 @@ const RegisterView = () => {
               className={styles.register__form__item__input}
             />
           </div>
-          <button type="submit" className={styles.register__form__item__button}>
+          <button
+            type="submit"
+            disabled={isLoading}
+            className={styles.register__form__item__button}
+          >
+            {isLoading ? "Loading..." : "Register"}
             Register
           </button>
         </form>
