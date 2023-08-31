@@ -12,7 +12,7 @@ type SessionData = {
 };
 
 const Navbar = () => {
-  const { data }: { data: SessionData | null } = useSession();
+  const { data }: any = useSession();
   return (
     <div className={styles.navbar}>
       <div>Navbar</div>
